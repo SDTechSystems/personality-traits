@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 - 2026-11-21
+
+- New traits: thrifty, explainer, skeptic, security-minded.
+- dependent renamed to consultative.
+- Three intensity levels for every trait.
+- trait-composer: first-use interview, packs (startup, production, non-coder-boss, autopilot), task-based adaptation, "Working as" line, new precedence order.
+- Fixed limits accept specific pre-authorizations learned from memory.
+
 ## 0.1.1 - 2026-11-21
 
 - Quote frontmatter descriptions so strict YAML parsers (including `npx skills`) accept them.

@@ -4,44 +4,63 @@
 
 # personality-traits
 
-Choose how your AI agent works. Give it one or more traits, such as lean, diligent, cautious or proactive, and it changes how it codes, decides and reports to match.
+Build the AI assistant you want to work with. Pick personality traits (lean, careful, thrifty, a skeptical senior, an explainer...), set how strong each one is, and your agent changes how it codes, decides and reports to match. It learns your style over time, like an employee training with a new boss.
 
 ```bash
 npx skills add sdtechsystems/personality-traits
 ```
 
-Install only the ones you want:
+Or install only what you want:
 
 ```bash
-npx skills add sdtechsystems/personality-traits --skill trait-composer --skill trait-lean
+npx skills add sdtechsystems/personality-traits --skill trait-composer --skill trait-lean --skill trait-thrifty
 ```
 
-## Use
+Works best with Claude Code; any agent that reads `SKILL.md` files can use it.
 
-Tell the agent in a message, or put it in your project's `CLAUDE.md` / `AGENTS.md`:
+## Getting started
 
-```
-Traits: lean, cautious
-```
-
-or pick a preset:
+On first use, the agent offers a one-minute interview (what you use it for, how comfortable you are with code, how much autonomy you want) and suggests a setup. Or set it yourself, in a message or in your project's `CLAUDE.md` / `AGENTS.md`:
 
 ```
-Preset: production
+Traits: lean:2, cautious:3
+```
+
+```
+Pack: production + explainer:1
+```
+
+Each task starts with one line so you always know who you are working with:
+
+```
+Working as: lean·2, cautious·3
 ```
 
 ## Traits
 
-| Trait | How it works | Use it for |
+| Trait | What to expect | Impact on work and code |
 |---|---|---|
-| `trait-lean` | Shortest path that fully works. No extras. | Prototypes, scripts |
-| `trait-diligent` | Finishes completely: tested, documented, tidy. | Client work, releases |
-| `trait-cautious` | Small, reversible steps with a way back. | Production, real data |
-| `trait-attentive` | Catches details and remembers what you said. | Reviews, long specs |
-| `trait-proactive` | Asks for permissions up front, spots automation, suggests the right settings. | Long or unattended runs |
-| `trait-dependent` | Checks in before each real decision, with options. | Learning, sensitive work |
+| `lean` | The shortest path that fully works | Small diffs, no extras |
+| `diligent` | Finishes completely | Tests, docs and cleanup in every change |
+| `cautious` | Small, reversible steps | Backups, flags and dry runs before risky steps |
+| `attentive` | Catches details, remembers what you said | Follows conventions; flags inconsistencies |
+| `proactive` | Thinks one step ahead | Asks for everything up front; proposes automation |
+| `consultative` | Checks in before real decisions | Questions with options; you keep control |
+| `thrifty` | Saves AI usage, money and dependencies | Plans a budget; says what it saved |
+| `explainer` | Tells you what was built and how to use it | Short briefs after big or non-obvious changes |
+| `skeptic` | A senior QA and security reviewer | Questions the plan; then does the job well |
+| `security-minded` | Security and privacy first | Safe defaults; checks secrets, inputs, data |
 
-`trait-composer` combines them and settles conflicts: **cautious > diligent > attentive > proactive > lean > dependent**. So `lean + diligent` gives you the smallest solution, *with* its test.
+Every trait has three levels: `:1` light, `:2` normal (default), `:3` strong.
+
+## Packs
+
+| Pack | Traits | For |
+|---|---|---|
+| `startup` | lean:2 + proactive:2 + thrifty:2 | Prototypes and solo builders: fast and cheap |
+| `production` | cautious:3 + diligent:2 + skeptic:2 + security-minded:2 | Live systems and client work: safe and complete |
+| `non-coder-boss` | explainer:2 + consultative:1 + diligent:2 | People who direct the work but don't code |
+| `autopilot` | proactive:3 + cautious:2 + attentive:2 | Long tasks while you're away |
 
 ## Same request, different traits
 
@@ -49,36 +68,37 @@ Preset: production
 
 | Trait | Response |
 |---|---|
-| lean | One toggle using the existing CSS variables. 1 file, 14 lines. Didn't add persistence. |
-| diligent | Toggle, persisted choice, system default, 3 tests, contrast checked, README updated. |
+| lean | One toggle using the existing CSS variables. 1 file, 14 lines. |
+| diligent | Toggle, remembered choice, system default, 3 tests, contrast checked, README updated. |
 | cautious | Added behind a feature flag, off by default. Light theme verified unchanged. |
 | attentive | Used your brand tokens. Noticed the dark logo will vanish on the dark background. |
-| proactive | Done. Next: a white logo variant and a screenshot test for both themes. Want them? |
-| dependent | Two decisions first: remember the choice? Follow the system setting? I'd say yes to both. |
+| proactive | Done. Next: a white logo variant and a screenshot test for both themes. |
+| consultative | Two decisions first: remember the choice? Follow the system setting? I'd say yes to both. |
+| thrifty | CSS variables only, nothing added to the bundle. A smaller model would have been enough. |
+| explainer | Done. Where the toggle is, what it remembers, and how to try it. |
+| skeptic | Three components use hard-coded colors and would look broken; converting them too. |
+| security-minded | Nothing security-relevant here; stored the preference locally, no personal data. |
 
-## Presets
+## Conflicts
 
-| Preset | Traits |
-|---|---|
-| `startup` | lean + proactive |
-| `production` | cautious + diligent + attentive |
-| `client` | diligent + attentive + proactive |
-| `learning` | dependent + diligent |
-| `scripts` | lean |
-| `autopilot` | proactive + cautious |
+When traits disagree, this order sets the floor: **security-minded > cautious > skeptic > diligent > attentive > thrifty > proactive > explainer > lean > consultative**. So `lean + diligent` gives you the smallest solution with its test, and `thrifty + security-minded` the cheapest option that stays secure.
+
+## It adapts
+
+When a task clearly needs a different trait (touching production, handling personal data), the agent proposes it before starting. Early on it asks; once it knows you, it applies it for that task and tells you.
 
 ## Limits every trait keeps
 
-No trait, however "lazy" or autonomous, will:
+No trait, level or pack will:
 
-1. Skip confirmation for irreversible or outward-facing actions (delete, push, deploy, send, pay).
+1. Skip confirmation for irreversible or outward-facing actions (delete, push, deploy, send, pay), unless you pre-authorized that exact action.
 2. Disable tests, validations or security checks to go faster.
 3. Grant itself permissions or edit its own configuration.
 4. Report "done" without checking.
 
 ## Pairs well with
 
-[common-sense](https://github.com/sdtechsystems/common-sense): the baseline judgment (time, place, intent, cost) every trait builds on.
+[common-sense](https://github.com/sdtechsystems/common-sense): the baseline judgment every trait builds on (time, devices, intent, your technical level, cost).
 
 ## Security
 

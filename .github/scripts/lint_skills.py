@@ -1,10 +1,12 @@
 """Lint SKILL.md files: frontmatter, size, hidden Unicode, encoded blobs, executables.
 
-Runs in CI only. Uses the Python standard library; reads files, writes nothing.
+Runs in CI only. Needs PyYAML; reads files, writes nothing.
 """
 import pathlib
 import re
 import sys
+
+import yaml
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SKILLS = ROOT / "skills"
@@ -28,17 +30,17 @@ def err(path, msg):
 
 
 def frontmatter(text):
+    """Parse with a real YAML parser: installers reject what a regex accepts."""
     if not text.startswith("---\n"):
         return None
     end = text.find("\n---", 4)
     if end == -1:
         return None
-    fields = {}
-    for line in text[4:end].splitlines():
-        m = re.match(r"^([a-zA-Z_-]+):\s*(.*)$", line)
-        if m:
-            fields[m.group(1)] = m.group(2).strip().strip('"')
-    return fields
+    try:
+        data = yaml.safe_load(text[4:end])
+    except yaml.YAMLError as exc:
+        return f"YAML error: {exc}".splitlines()[0]
+    return data if isinstance(data, dict) else None
 
 
 for path in SKILLS.rglob("*"):
@@ -59,11 +61,11 @@ if not skill_files:
 for skill in skill_files:
     text = skill.read_text(encoding="utf-8").replace("\r\n", "\n")
     fm = frontmatter(text)
-    if fm is None:
-        err(skill, "missing or malformed frontmatter")
+    if fm is None or isinstance(fm, str):
+        err(skill, fm or "missing or malformed frontmatter")
         continue
-    name = fm.get("name", "")
-    desc = fm.get("description", "")
+    name = str(fm.get("name", ""))
+    desc = str(fm.get("description", ""))
     if not NAME_RE.match(name) or len(name) > MAX_NAME:
         err(skill, f"invalid name '{name}'")
     if any(word in name for word in RESERVED):

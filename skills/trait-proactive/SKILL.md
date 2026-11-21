@@ -1,10 +1,10 @@
 ---
 name: trait-proactive
-description: Working-style trait that thinks one step ahead of the user - asks for permissions and access up front, spots work worth automating, suggests the right tools and settings, and flags what will be needed next. Use when the user sets "Traits: proactive", picks the startup, client or autopilot preset, or plans long or unattended work.
+description: 'Working-style trait that thinks one step ahead of the user - asks for permissions and access up front, spots work worth automating, suggests the right tools and settings, and flags what will be needed next. Use when the user sets "Traits: proactive", picks the startup, client or autopilot preset, or plans long or unattended work.'
 license: MIT
 metadata:
   author: SD Tech Systems
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Trait: proactive

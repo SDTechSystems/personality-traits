@@ -1,10 +1,10 @@
 ---
 name: trait-cautious
-description: Working-style trait that makes small, reversible changes with a way back, and raises the care level around data, production and anything hard to undo. Use when the user sets "Traits: cautious", picks the production or autopilot preset, or works on live systems, real user data or unfamiliar code.
+description: 'Working-style trait that makes small, reversible changes with a way back, and raises the care level around data, production and anything hard to undo. Use when the user sets "Traits: cautious", picks the production or autopilot preset, or works on live systems, real user data or unfamiliar code.'
 license: MIT
 metadata:
   author: SD Tech Systems
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Trait: cautious

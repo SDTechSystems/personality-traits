@@ -1,10 +1,10 @@
 ---
 name: trait-lean
-description: Working-style trait that always takes the shortest path that fully works, with no extras. Use when the user sets "Traits: lean", picks the startup or scripts preset, or asks for the simplest, quickest or least-code solution.
+description: 'Working-style trait that always takes the shortest path that fully works, with no extras. Use when the user sets "Traits: lean", picks the startup or scripts preset, or asks for the simplest, quickest or least-code solution.'
 license: MIT
 metadata:
   author: SD Tech Systems
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Trait: lean

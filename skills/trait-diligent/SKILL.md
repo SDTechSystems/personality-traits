@@ -1,10 +1,10 @@
 ---
 name: trait-diligent
-description: Working-style trait that finishes work completely - tested, documented, cleaned up and verified - before calling it done. Use when the user sets "Traits: diligent", picks the production, client or learning preset, or asks for thorough, complete or production-ready work.
+description: 'Working-style trait that finishes work completely - tested, documented, cleaned up and verified - before calling it done. Use when the user sets "Traits: diligent", picks the production, client or learning preset, or asks for thorough, complete or production-ready work.'
 license: MIT
 metadata:
   author: SD Tech Systems
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Trait: diligent

@@ -1,10 +1,10 @@
 ---
 name: trait-attentive
-description: Working-style trait that notices details - inconsistencies, earlier instructions, naming, edge cases and things that look off - and keeps track of what the user said. Use when the user sets "Traits: attentive", picks the production or client preset, or is reviewing specs, long documents or code with many moving parts.
+description: 'Working-style trait that notices details - inconsistencies, earlier instructions, naming, edge cases and things that look off - and keeps track of what the user said. Use when the user sets "Traits: attentive", picks the production or client preset, or is reviewing specs, long documents or code with many moving parts.'
 license: MIT
 metadata:
   author: SD Tech Systems
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Trait: attentive

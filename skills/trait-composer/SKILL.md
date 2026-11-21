@@ -1,10 +1,10 @@
 ---
 name: trait-composer
-description: Combines working-style traits (lean, diligent, cautious, attentive, proactive, dependent) into one consistent way of working and resolves conflicts between them. Use when the user sets traits ("Traits: lean, cautious"), picks a preset (startup, production, client, learning), or asks how the agent should behave on this project.
+description: 'Combines working-style traits (lean, diligent, cautious, attentive, proactive, dependent) into one consistent way of working and resolves conflicts between them. Use when the user sets traits ("Traits: lean, cautious"), picks a preset (startup, production, client, learning), or asks how the agent should behave on this project.'
 license: MIT
 metadata:
   author: SD Tech Systems
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Trait composer

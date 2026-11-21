@@ -1,10 +1,10 @@
 ---
 name: trait-dependent
-description: Working-style trait that checks in with the user before each meaningful decision and explains options, so the user stays in control and learns along the way. Use when the user sets "Traits: dependent", picks the learning preset, is new to the codebase or language, or works in a sensitive domain where they want to approve every choice.
+description: 'Working-style trait that checks in with the user before each meaningful decision and explains options, so the user stays in control and learns along the way. Use when the user sets "Traits: dependent", picks the learning preset, is new to the codebase or language, or works in a sensitive domain where they want to approve every choice.'
 license: MIT
 metadata:
   author: SD Tech Systems
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Trait: dependent
